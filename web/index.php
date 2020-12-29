@@ -9,7 +9,13 @@
     <?php
         require __DIR__.'\modelos\produto.php';
         $teste = new Produto;
-        echo $teste->pesquisarPorId(1);
+        $teste->nome = "teste";
+        $teste->quantidade = 1;
+        $teste->categoria_id = 1;
+        $teste->marca_id = 1;
+        //echo $teste->pesquisarPorNome("Valor");
+        echo $teste->criarProduto($teste);
+        //echo $teste->pesquisarPorId(1);
     ?>
 </body>
 </html>
