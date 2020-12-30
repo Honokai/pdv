@@ -13,6 +13,10 @@ class Produto
         $this->config = $this->config->estabelecerConexao();
     }
 
+    /**
+     * função para retornar todos os registros da tabela
+     * @return json
+     */
     public function tudo()
     {
         $consulta = "select * from produtos where quantidade > 0";
@@ -31,7 +35,6 @@ class Produto
                     }
                     return json_encode($array);
                 } else {
-                    header("Content-type:application/json;charset=utf-8");
                     return json_encode(["mensagem"=>"não foi encontrado nenhum registro", "retorno" => $retorno], JSON_UNESCAPED_UNICODE);
                 }
             }
@@ -97,7 +100,6 @@ class Produto
                 }
                 return json_encode($array);
             } else {
-                header("Content-type:application/json;charset=utf-8");
                 return json_encode(["mensagem"=>"não foi encontrado nenhum registro", "retorno" => $retorno], JSON_UNESCAPED_UNICODE);
             }
         }
