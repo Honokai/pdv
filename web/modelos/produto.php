@@ -43,7 +43,7 @@ class Produto
         $conexao = $this->config;
         /* verifica se estabeleceu a conexao*/
         if(!$conexao){
-            echo "Falhou" ;
+            echo "Falhou";
             exit();
         } else {
             return json_encode($conexao->query($consulta));
@@ -57,7 +57,7 @@ class Produto
      */
     public function pesquisarPorNome(string $nome)
     {
-        $consulta = "select * from produtos where nome = {$nome}";
+        $consulta = "select * from produtos where nome = '{$nome}'";
         $conexao = $this->config;
         if(!$conexao){
             return json_encode(["mensagem"=>"Opa, a conexão falhou"]);
