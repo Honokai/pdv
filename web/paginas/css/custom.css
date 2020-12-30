@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container {
+    display: flex;
+    flex: auto;
+}
+
+.listagem {
+    display: flex;
+    flex: 3;
+    grid-template-columns: auto;
+    background-color: gray;
+    padding: 5px 5px 5px 5px;
+}
+
+.cartao-lista {
+    background-color: black;
+    padding: 5px;
+    margin: 5px 0px 5px 0px;
+    display: inline;
+}
+
+.produto-q {
+    display: inline-flex;
+}
+
+.produto-nome {
+    display: inline-flex;
+}
+
+.lateral {
+    flex: 1;
+}
+
+.lateral > div:first-child {
+    text-align: center;
+    font-size: 20px;
+    color: black;
+}
+
+.input-pesquisa {
+    outline: none;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
+.input-pesquisa ~ button {
+    color: gray;
+    border: 0;
+    font-size: 15px;
+    background-color: beige;
+    padding: 5px;
+}

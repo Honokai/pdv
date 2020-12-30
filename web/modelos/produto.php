@@ -13,6 +13,33 @@ class Produto
         $this->config = $this->config->estabelecerConexao();
     }
 
+    public function tudo()
+    {
+        $consulta = "select * from produtos where quantidade > 0";
+        try {
+            $conexao = $this->config;
+            $retorno = $conexao->query($consulta);
+            if($retorno === false){
+                return json_encode(["mensagem"=>$conexao->error]);
+            } else {
+                $retorno = $conexao->query($consulta);
+                /* ao nao retornar false quer dizer que conseguiu recuperar algum dado e que nao esta vazio */
+                if($retorno != false) {
+                    $array = [];
+                    foreach($retorno as $resultado){
+                        array_push($array, $resultado);
+                    }
+                    return json_encode($array);
+                } else {
+                    header("Content-type:application/json;charset=utf-8");
+                    return json_encode(["mensagem"=>"não foi encontrado nenhum registro", "retorno" => $retorno], JSON_UNESCAPED_UNICODE);
+                }
+            }
+        } catch (\mysqli $th) {
+            return json_encode($th->errno);
+        }
+    }
+
     public function criarProduto(Produto $produto)
     {
         $consulta = "insert into {$this->tabela}".
@@ -57,7 +84,7 @@ class Produto
      */
     public function pesquisarPorNome(string $nome)
     {
-        $consulta = "select * from produtos where nome = '{$nome}'";
+        $consulta = "select * from produtos where nome like '%{$nome}%'";
         $conexao = $this->config;
         if(!$conexao){
             return json_encode(["mensagem"=>"Opa, a conexão falhou"]);
